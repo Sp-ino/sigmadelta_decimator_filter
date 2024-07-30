@@ -1,1 +1,5 @@
 vivado_project/*
+*.jou
+*.log
+*.str
+*.Xil/
