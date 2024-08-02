@@ -74,6 +74,7 @@ architecture rtl of cic_core_v2 is
   signal section_in4                      : signed(22 downto 0); -- sfix23
   signal diff1                            : signed(22 downto 0); -- sfix23
   signal section_out4                     : signed(22 downto 0); -- sfix23
+  signal s4_out_registered                : signed(22 downto 0); -- sfix23
   signal sub_cast                         : signed(22 downto 0); -- sfix23
   signal sub_cast_1                       : signed(22 downto 0); -- sfix23
   signal sub_temp                         : signed(23 downto 0); -- sfix31
@@ -81,6 +82,7 @@ architecture rtl of cic_core_v2 is
   signal section_in5                      : signed(22 downto 0); -- sfix23
   signal diff2                            : signed(22 downto 0); -- sfix23
   signal section_out5                     : signed(22 downto 0); -- sfix23
+  signal s5_out_registered                : signed(22 downto 0); -- sfix23
   signal sub_cast_2                       : signed(22 downto 0); -- sfix23
   signal sub_cast_3                       : signed(22 downto 0); -- sfix23
   signal sub_temp_1                       : signed(23 downto 0); -- sfix31
@@ -215,11 +217,11 @@ begin
     end if; 
   end process comb_delay_section4;
 
-  comb_set4_out_reg : process (clk, reset)
+  comb_sect4_out_reg : process (clk, reset)
   begin
     if reset = '1' then
       s4_out_registered <= (others => '0');
-    elsif rising_edge(clk)
+    elsif rising_edge(clk) then
       s4_out_registered <= section_out4;
     end if;
   end process;
@@ -244,11 +246,11 @@ begin
     end if; 
   end process comb_delay_section5;
 
-  comb_set4_out_reg : process (clk, reset)
+  comb_sect5_out_reg : process (clk, reset)
   begin
     if reset = '1' then
       s5_out_registered <= (others => '0');
-    elsif rising_edge(clk)
+    elsif rising_edge(clk) then
       s5_out_registered <= section_out5;
     end if;
   end process;
