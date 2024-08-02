@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="35.172213 us"></ZoomStartTime>
-      <ZoomEndTime time="39.881464 us"></ZoomEndTime>
-      <Cursor1Time time="38.440000 us"></Cursor1Time>
+      <ZoomStartTime time="51,194.187 ns"></ZoomStartTime>
+      <ZoomEndTime time="51,358.430 ns"></ZoomEndTime>
+      <Cursor1Time time="51,288.205 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="222"></NameColumnWidth>
-      <ValueColumnWidth column_width="99"></ValueColumnWidth>
+      <ValueColumnWidth column_width="95"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
+   <WVObjectSize size="13" />
    <wvobject type="logic" fp_name="/tb/ck">
       <obj_property name="ElementShortName">ck</obj_property>
       <obj_property name="ObjectShortName">ck</obj_property>
@@ -70,5 +70,13 @@
    <wvobject type="other" fp_name="/tb/osr">
       <obj_property name="ElementShortName">osr</obj_property>
       <obj_property name="ObjectShortName">osr</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/cic_filter1/core_v0/section_out5">
+      <obj_property name="ElementShortName">section_out5[29:0]</obj_property>
+      <obj_property name="ObjectShortName">section_out5[29:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/cic_filter0/core_v0/s5_out_registered">
+      <obj_property name="ElementShortName">s5_out_registered[22:0]</obj_property>
+      <obj_property name="ObjectShortName">s5_out_registered[22:0]</obj_property>
    </wvobject>
 </wave_config>
