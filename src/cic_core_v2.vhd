@@ -104,7 +104,7 @@ begin
   begin
     if reset = '1' then
       current_count <= to_unsigned(0, 8);
-    elsif clk'event and clk = '1' then
+    elsif rising_edge(clk) then
       if enb_1_1_1 = '1' then
         if current_count >= to_unsigned(159, 8) then
           current_count <= to_unsigned(0, 8);
@@ -134,7 +134,7 @@ begin
   begin
     if reset = '1' then
       section_out1 <= (others => '0');
-    elsif clk'event and clk = '1' then
+    elsif rising_edge(clk) then
       if enb_1_1_1 = '1' then
         section_out1 <= sum1;
       end if;
@@ -154,7 +154,7 @@ begin
   begin
     if reset = '1' then
       section_out2 <= (others => '0');
-    elsif clk'event and clk = '1' then
+    elsif rising_edge(clk) then
       if enb_1_1_1 = '1' then
         section_out2 <= sum2;
       end if;
@@ -174,7 +174,7 @@ begin
   begin
     if reset = '1' then
       section_out3 <= (others => '0');
-    elsif clk'event and clk = '1' then
+    elsif rising_edge(clk) then
       if enb_1_1_1 = '1' then
         section_out3 <= sum3;
       end if;
@@ -188,7 +188,7 @@ begin
   begin
     if reset = '1' then
       decimated <= (others => '0');
-    elsif clk'event and clk = '1' then
+    elsif rising_edge(clk) then
       if phase_0 = '1' then
         decimated <= section_out3;
       end if;
@@ -208,16 +208,25 @@ begin
   begin
     if reset = '1' then
       diff1 <= (others => '0');
-    elsif clk'event and clk = '1' then
+    elsif rising_edge(clk) then
       if phase_0 = '1' then
         diff1 <= section_in4;
       end if;
     end if; 
   end process comb_delay_section4;
 
+  comb_set4_out_reg : process (clk, reset)
+  begin
+    if reset = '1' then
+      s4_out_registered <= (others => '0');
+    elsif rising_edge(clk)
+      s4_out_registered <= section_out4;
+    end if;
+  end process;
+
   --   ------------------ Section # 5 : Comb ------------------
 
-  section_in5 <= section_out4;
+  section_in5 <= s4_out_registered;
 
   sub_cast_2 <= section_in5;
   sub_cast_3 <= diff2;
@@ -228,16 +237,25 @@ begin
   begin
     if reset = '1' then
       diff2 <= (others => '0');
-    elsif clk'event and clk = '1' then
+    elsif rising_edge(clk) then
       if phase_0 = '1' then
         diff2 <= section_in5;
       end if;
     end if; 
   end process comb_delay_section5;
 
+  comb_set4_out_reg : process (clk, reset)
+  begin
+    if reset = '1' then
+      s5_out_registered <= (others => '0');
+    elsif rising_edge(clk)
+      s5_out_registered <= section_out5;
+    end if;
+  end process;
+
   --   ------------------ Section # 6 : Comb ------------------
 
-  section_in6 <= section_out5;
+  section_in6 <= s5_out_registered;
 
   sub_cast_4 <= section_in6;
   sub_cast_5 <= diff3;
@@ -248,7 +266,7 @@ begin
   begin
     if reset = '1' then
       diff3 <= (others => '0');
-    elsif clk'event and clk = '1' then
+    elsif rising_edge(clk) then
       if phase_0 = '1' then
         diff3 <= section_in6;
       end if;
@@ -259,7 +277,7 @@ begin
   begin
     if reset = '1' then
       regout <= (others => '0');
-    elsif clk'event and clk = '1' then
+    elsif rising_edge(clk) then
       if phase_0 = '1' then
         regout <= section_out6;
       end if;
