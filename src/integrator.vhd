@@ -17,8 +17,8 @@ end integrator;
 
 architecture behavioral of integrator is
     signal sum : signed(23 downto 0);
-    signal add1 : signed(22 downto 0);
-    signal add2 : signed(22 downto 0);
+    signal add1 : signed(23 downto 0);
+    signal add2 : signed(23 downto 0);
 begin
 
     add1 <= resize(signed(din), 24);

@@ -17,7 +17,7 @@ end counter;
 architecture behavioral of counter is
 
     constant osr : integer := 160;
-    signal current_count : std_logic_vector(7 downto 0);
+    signal current_count : unsigned(7 downto 0);
 
 begin
 
