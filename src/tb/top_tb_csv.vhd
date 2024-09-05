@@ -10,14 +10,14 @@ end tb;
 
 architecture behavioral of tb is
 
-    component cic_top_v2 is
+    component cic_top_v3 is
         port (
             clk: in std_logic;
             reset: in std_logic;
             clk_enable: in std_logic;
-            input: in std_logic_vector(1 DOWNTO 0);  -- int2
+            input: in std_logic_vector(1 downto 0);  -- int2
             ce_out: out std_logic;
-            output: out std_logic_vector(22 DOWNTO 0)  -- sfix23
+            output: out std_logic_vector(22 downto 0)  -- sfix30
         );
     end component;
 
@@ -26,9 +26,9 @@ architecture behavioral of tb is
             clk: in std_logic;
             reset: in std_logic;
             clk_enable: in std_logic;
-            input: in std_logic_vector(7 DOWNTO 0);  -- int8
+            input: in std_logic_vector(7 downto 0);  -- int8
             ce_out: out std_logic;
-            output: out std_logic_vector(29 DOWNTO 0)  -- sfix29
+            output: out std_logic_vector(29 downto 0)  -- sfix30
         );
     end component;
 
@@ -41,8 +41,8 @@ architecture behavioral of tb is
     signal input: std_logic_vector (7 downto 0) := (others => '0');
     signal input_2bit: std_logic_vector (1 downto 0) := "00";
     -- signal output_v0: std_logic_vector (29 downto 0);
-    signal output_v1: std_logic_vector (29 downto 0);
-    signal output_v2: std_logic_vector (22 downto 0);
+    signal output_ref: std_logic_vector (29 downto 0);
+    signal output_dut: std_logic_vector (22 downto 0);
 
     -- Open file
     -- file input_file : text open read_mode is "/home/valerio/phd/lavori/sigmadelta_decimator_filter/src/tb/mod2_out.txt";
@@ -52,24 +52,24 @@ architecture behavioral of tb is
 
 begin
 
-    cic_filter0: cic_top_v2
+    dut: cic_top_v3
         port map (
             clk => ck,
             reset => rst,
             clk_enable => ck_en,
             ce_out => ce_out,
             input => input_2bit,
-            output => output_v2
+            output => output_dut
         );
 
-    cic_filter1: cic_top_v1
+    ref: cic_top_v1
         port map (
             clk => ck,
             reset => rst,
             clk_enable => ck_en,
             ce_out => ce_out,
             input => input,
-            output => output_v1
+            output => output_ref
         );
 
     ck_gen: process

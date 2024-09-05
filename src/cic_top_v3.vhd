@@ -10,7 +10,7 @@ entity cic_top_v3 is
         clk: in std_logic;
         reset: in std_logic;
         clk_enable: in std_logic;
-        input: in std_logic_vector(1 downto 0);  -- int8
+        input: in std_logic_vector(1 downto 0);  -- int2
         ce_out: out std_logic;
         output: out std_logic_vector(22 downto 0)  -- sfix23
     );
@@ -33,6 +33,7 @@ architecture structural of cic_top_v3 is
         port ( 
             clk : in std_logic;
             rst : in std_logic;
+            phase_0 : in std_logic;
             din : in std_logic_vector(22 downto 0);
             dout : out std_logic_vector(22 downto 0)
         );
@@ -59,19 +60,20 @@ architecture structural of cic_top_v3 is
     signal sect3_int_out_decimated : std_logic_vector(22 downto 0);
     signal sect4_comb_out : std_logic_vector(22 downto 0);
     signal sect5_comb_out : std_logic_vector(22 downto 0);
+    signal sect6_comb_out : std_logic_vector(22 downto 0);
 
 begin
 
-    counter: counter
+    count: counter
     port map (
         rst => reset,
         en => clk_enable,
         clk => clk,
-        phase_0 => phase_0,
-    )
+        phase_0 => phase_0
+    );
 
     input_signed <= signed(input);
-    input_resized <= resize(input_signed);
+    input_resized <= resize(input_signed, 23);
     sect1_int_in <= std_logic_vector(input_resized);
 
     --   ------------------ Section # 1 : Integrator ------------------
@@ -80,8 +82,8 @@ begin
         clk => clk,
         rst => reset,
         din => sect1_int_in,
-        dout => sect1_int_out,
-    )
+        dout => sect1_int_out
+    );
 
     --   ------------------ Section # 2 : Integrator ------------------
     sect2 : integrator
@@ -89,8 +91,8 @@ begin
         clk => clk,
         rst => reset,
         din => sect1_int_out,
-        dout => sect2_int_out,
-    )
+        dout => sect2_int_out
+    );
 
     --   ------------------ Section # 3 : Integrator ------------------
     sect3 : integrator
@@ -98,8 +100,8 @@ begin
         clk => clk,
         rst => reset,
         din => sect2_int_out,
-        dout => sect3_int_out,
-    )
+        dout => sect3_int_out
+    );
 
 
     --   ------------------ Decimator ---------------------------------
@@ -120,8 +122,9 @@ begin
     port map ( 
         clk => clk,
         rst => reset,
+        phase_0 => phase_0,
         din => sect3_int_out_decimated,
-        dout => sect4_comb_out,
+        dout => sect4_comb_out
     );
 
     --   ------------------ Section # 5 : Comb ------------------
@@ -129,8 +132,9 @@ begin
     port map ( 
         clk => clk,
         rst => reset,
+        phase_0 => phase_0,
         din => sect4_comb_out,
-        dout => sect5_comb_out,
+        dout => sect5_comb_out
     );
 
     --   ------------------ Section # 6 : Comb ------------------
@@ -138,8 +142,20 @@ begin
     port map (
         clk => clk,
         rst => reset,
+        phase_0 => phase_0,
         din => sect5_comb_out,
-        dout => output,
+        dout => sect6_comb_out
     );
 
+    data_hold_reg : process (clk, reset)
+    begin
+      if reset = '1' then
+        output <= (others => '0');
+      elsif rising_edge(clk) then
+        if phase_0 = '1' then
+          output <= sect6_comb_out;
+        end if;
+      end if; 
+    end process;
+  
 end structural;

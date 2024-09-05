@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="51,194.187 ns"></ZoomStartTime>
-      <ZoomEndTime time="51,358.430 ns"></ZoomEndTime>
-      <Cursor1Time time="51,288.205 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="104.045001 us"></ZoomEndTime>
+      <Cursor1Time time="1.000000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="222"></NameColumnWidth>
-      <ValueColumnWidth column_width="95"></ValueColumnWidth>
+      <ValueColumnWidth column_width="91"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="13" />
+   <WVObjectSize size="11" />
    <wvobject type="logic" fp_name="/tb/ck">
       <obj_property name="ElementShortName">ck</obj_property>
       <obj_property name="ObjectShortName">ck</obj_property>
@@ -43,22 +43,6 @@
       <obj_property name="ElementShortName">input_2bit[1:0]</obj_property>
       <obj_property name="ObjectShortName">input_2bit[1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb/output_v1">
-      <obj_property name="ElementShortName">output_v1[29:0]</obj_property>
-      <obj_property name="ObjectShortName">output_v1[29:0]</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="AnalogYRangeMin">4.96822e+07</obj_property>
-      <obj_property name="AnalogYRRangeMax">5.8744e+08</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb/output_v2">
-      <obj_property name="ElementShortName">output_v2[22:0]</obj_property>
-      <obj_property name="ObjectShortName">output_v2[22:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-   </wvobject>
    <wvobject type="other" fp_name="/tb/input_valid">
       <obj_property name="ElementShortName">input_valid</obj_property>
       <obj_property name="ObjectShortName">input_valid</obj_property>
@@ -71,12 +55,18 @@
       <obj_property name="ElementShortName">osr</obj_property>
       <obj_property name="ObjectShortName">osr</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb/cic_filter1/core_v0/section_out5">
-      <obj_property name="ElementShortName">section_out5[29:0]</obj_property>
-      <obj_property name="ObjectShortName">section_out5[29:0]</obj_property>
+   <wvobject type="array" fp_name="/tb/output_ref">
+      <obj_property name="ElementShortName">output_ref[29:0]</obj_property>
+      <obj_property name="ObjectShortName">output_ref[29:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb/cic_filter0/core_v0/s5_out_registered">
-      <obj_property name="ElementShortName">s5_out_registered[22:0]</obj_property>
-      <obj_property name="ObjectShortName">s5_out_registered[22:0]</obj_property>
+   <wvobject type="array" fp_name="/tb/output_dut">
+      <obj_property name="ElementShortName">output_dut[22:0]</obj_property>
+      <obj_property name="ObjectShortName">output_dut[22:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
    </wvobject>
 </wave_config>

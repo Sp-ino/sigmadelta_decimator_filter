@@ -17,10 +17,15 @@ end differentiator;
 
 
 architecture behavioral of differentiator is
+    signal din_delayed : signed(23 downto 0);
     signal diff : signed(23 downto 0);
-    signal sub1 : signed(22 downto 0);
-    signal sub2 : signed(22 downto 0);
+    signal sub1 : signed(23 downto 0);
+    signal sub2 : signed(23 downto 0);
 begin
+
+    sub1 <= resize(signed(din), 24);
+    sub2 <= signed(din_delayed);
+    diff <= sub1 - sub2;
 
     feedforward_reg: process(clk, rst)
     begin
@@ -28,23 +33,19 @@ begin
             din_delayed <= (others => '0');
         elsif rising_edge(clk) then
             if phase_0 = '1' then
-                din_delayed <= din;
-            end if;
-        end if;
-    end process;
-
-    sub1 <= resize(signed(din_delayed), 24);
-    sub2 <= resize(diff, 24);
+                din_delayed <= resize(signed(din), 24);
+            end if;    
+        end if;    
+    end process;    
 
     process(clk, rst)
     begin
         if rst = '1' then
-            diff <= (others => '0');
+            dout <= (others => '0');
         elsif rising_edge(clk) then
-            diff <= sub1 - sub2;
+            dout <= std_logic_vector(diff(22 downto 0));
         end if;
     end process;
 
-    dout <= std_logic_vector(diff_resized(22 downto 0));
 
 end behavioral;
