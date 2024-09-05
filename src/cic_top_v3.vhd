@@ -124,7 +124,7 @@ begin
         dout => sect4_comb_out,
     );
 
-    --   ------------------ Section # 4 : Comb ------------------
+    --   ------------------ Section # 5 : Comb ------------------
     comb2 : differentiator
     port map ( 
         clk => clk,
@@ -133,7 +133,7 @@ begin
         dout => sect5_comb_out,
     );
 
-    --   ------------------ Section # 4 : Comb ------------------
+    --   ------------------ Section # 6 : Comb ------------------
     comb3 : differentiator
     port map (
         clk => clk,
