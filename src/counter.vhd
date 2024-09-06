@@ -21,7 +21,7 @@ architecture behavioral of counter is
 
 begin
 
-    ce_output : process (clk, rst)
+    counter : process (clk, rst)
     begin
         if rst = '1' then
             current_count <= to_unsigned(0, 8);
@@ -34,7 +34,7 @@ begin
                 end if;
             end if;
         end if; 
-    end process ce_output;
+    end process counter;
 
     phase_0 <= '1' when current_count = to_unsigned(0, 8) and en = '1' else '0';
 

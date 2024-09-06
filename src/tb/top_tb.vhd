@@ -29,7 +29,8 @@ architecture behavioral of tb is
     signal ck: std_logic := '0';
     signal rst: std_logic := '0';
     signal ck_en: std_logic := '0';
-    signal ce_out: std_logic := '0';
+    signal ce_out: std_logic;
+    signal clk_decimated: std_logic;
     signal input: std_logic_vector (7 downto 0) := zero;
     signal output: std_logic_vector (29 downto 0);
 

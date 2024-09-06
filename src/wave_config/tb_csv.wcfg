@@ -11,14 +11,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="104.045001 us"></ZoomEndTime>
-      <Cursor1Time time="1.000000 us"></Cursor1Time>
+      <ZoomEndTime time="178.798154 us"></ZoomEndTime>
+      <Cursor1Time time="110.455000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="222"></NameColumnWidth>
-      <ValueColumnWidth column_width="91"></ValueColumnWidth>
+      <ValueColumnWidth column_width="83"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
+   <WVObjectSize size="14" />
    <wvobject type="logic" fp_name="/tb/ck">
       <obj_property name="ElementShortName">ck</obj_property>
       <obj_property name="ObjectShortName">ck</obj_property>
@@ -31,9 +31,9 @@
       <obj_property name="ElementShortName">ck_en</obj_property>
       <obj_property name="ObjectShortName">ck_en</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb/ce_out">
-      <obj_property name="ElementShortName">ce_out</obj_property>
-      <obj_property name="ObjectShortName">ce_out</obj_property>
+   <wvobject type="logic" fp_name="/tb/clk_decimated">
+      <obj_property name="ElementShortName">clk_decimated</obj_property>
+      <obj_property name="ObjectShortName">clk_decimated</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb/input">
       <obj_property name="ElementShortName">input[7:0]</obj_property>
@@ -68,5 +68,17 @@
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/ref/core_v0/ck_dec">
+      <obj_property name="ElementShortName">ck_dec</obj_property>
+      <obj_property name="ObjectShortName">ck_dec</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/ref/core_v0/phase_0">
+      <obj_property name="ElementShortName">phase_0</obj_property>
+      <obj_property name="ObjectShortName">phase_0</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/ref/clk_decimated">
+      <obj_property name="ElementShortName">clk_decimated</obj_property>
+      <obj_property name="ObjectShortName">clk_decimated</obj_property>
    </wvobject>
 </wave_config>

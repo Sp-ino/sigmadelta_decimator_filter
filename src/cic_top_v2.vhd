@@ -70,7 +70,7 @@ architecture rtl of cic_top_v2 is
   signal CIC_Decimation1_out1: std_logic_vector(22 downto 0);  -- ufix30
 
 begin
-  core_v0 : cic_core_v2
+  core_v2 : cic_core_v2
     port map( clk => clk,
               enb_1_1_1 => enb_1_1_1,
               reset => reset,

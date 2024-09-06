@@ -11,7 +11,7 @@ entity cic_top_v3 is
         reset: in std_logic;
         clk_enable: in std_logic;
         input: in std_logic_vector(1 downto 0);  -- int2
-        ce_out: out std_logic;
+        clk_decimated: out std_logic;
         output: out std_logic_vector(22 downto 0)  -- sfix23
     );
 end cic_top_v3;
@@ -75,6 +75,7 @@ begin
     input_signed <= signed(input);
     input_resized <= resize(input_signed, 23);
     sect1_int_in <= std_logic_vector(input_resized);
+    clk_decimated <= phase_0;
 
     --   ------------------ Section # 1 : Integrator ------------------
     sect1 : integrator

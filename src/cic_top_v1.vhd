@@ -43,7 +43,7 @@ entity cic_top_v1 is
         reset: in std_logic;
         clk_enable: in std_logic;
         input: in std_logic_vector(7 downto 0);  -- int8
-        ce_out: out std_logic;
+        clk_decimated: out std_logic;
         output: out std_logic_vector(29 downto 0)  -- sfix30
         );
 end cic_top_v1;
@@ -57,6 +57,7 @@ architecture rtl of cic_top_v1 is
           enb_1_1_1: in std_logic;
           reset: in std_logic;
           CIC_Decimation1_in: in std_logic_vector(7 downto 0);  -- int8
+          ck_dec: out std_logic;
           CIC_Decimation1_out: out std_logic_vector(29 downto 0)  -- sfix30
           );
   end component;
@@ -70,17 +71,16 @@ architecture rtl of cic_top_v1 is
   signal CIC_Decimation1_out1: std_logic_vector(29 downto 0);  -- ufix30
 
 begin
-  core_v0 : cic_core_v1
+  core_v1 : cic_core_v1
     port map( clk => clk,
               enb_1_1_1 => enb_1_1_1,
               reset => reset,
+              ck_dec => clk_decimated,
               CIC_Decimation1_in => input,  -- int8
               CIC_Decimation1_out => CIC_Decimation1_out1  -- sfix30
               );
 
   enb_1_1_1 <= clk_enable;
-
-  ce_out <= enb_1_1_1;
 
   output <= CIC_Decimation1_out1;
 

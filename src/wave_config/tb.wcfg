@@ -34,9 +34,9 @@
       <obj_property name="ElementShortName">ck_en</obj_property>
       <obj_property name="ObjectShortName">ck_en</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb/ce_out">
-      <obj_property name="ElementShortName">ce_out</obj_property>
-      <obj_property name="ObjectShortName">ce_out</obj_property>
+   <wvobject type="logic" fp_name="/tb/clk_decimated">
+      <obj_property name="ElementShortName">clk_decimated</obj_property>
+      <obj_property name="ObjectShortName">clk_decimated</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb/input">
       <obj_property name="ElementShortName">input[7:0]</obj_property>

@@ -26,6 +26,7 @@ entity cic_core_v1 is
    PORT( clk                             :   in    std_logic; 
          enb_1_1_1                       :   in    std_logic; 
          reset                           :   in    std_logic; 
+         ck_dec                           :  out    std_logic; 
          CIC_Decimation1_in              :   in    std_logic_vector(7 downto 0); -- sfix8
          CIC_Decimation1_out             :   out   std_logic_vector(29 downto 0)  -- sfix30
          );
@@ -100,7 +101,7 @@ begin
   -- Block Statements
   --   ------------------ CE Output Generation ------------------
 
-  ce_output : process (clk, reset)
+  counter : process (clk, reset)
   begin
     if reset = '1' then
       current_count <= to_unsigned(0, 8);
@@ -113,9 +114,10 @@ begin
         end if;
       end if;
     end if; 
-  end process ce_output;
+  end process counter;
 
   phase_0 <= '1' when current_count = to_unsigned(0, 8) and enb_1_1_1 = '1' else '0';
+  ck_dec <= phase_0;
 
   input_typeconvert <= signed(CIC_Decimation1_in);
 

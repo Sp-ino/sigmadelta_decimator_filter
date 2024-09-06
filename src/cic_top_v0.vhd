@@ -15,13 +15,13 @@
 -- 
 -- Clock Enable  Sample Time
 -- -------------------------------------------------------------
--- ce_out        0.2
+-- clk_decimated        0.2
 -- -------------------------------------------------------------
 -- 
 -- 
 -- Output Signal                 Clock Enable  Sample Time
 -- -------------------------------------------------------------
--- output                          ce_out        0.2
+-- output                          clk_decimated        0.2
 -- -------------------------------------------------------------
 -- 
 -- -------------------------------------------------------------
@@ -42,9 +42,9 @@ entity cic_top_v0 is
   port( clk                               :   in    std_logic;
         reset                             :   in    std_logic;
         clk_enable                        :   in    std_logic;
-        input                               :   in    std_logic_vector(7 downto 0);  -- int8
-        ce_out                            :   out   std_logic;
-        output                              :   out   std_logic_vector(29 downto 0)  -- sfix30
+        input                             :   in    std_logic_vector(7 downto 0);  -- int8
+        clk_decimated                     :   out   std_logic;
+        output                            :   out   std_logic_vector(29 downto 0)  -- sfix30
         );
 end cic_top_v0;
 
@@ -57,6 +57,7 @@ architecture rtl of cic_top_v0 is
           enb_1_1_1                       :   in    std_logic;
           reset                           :   in    std_logic;
           CIC_Decimation1_in              :   in    std_logic_vector(7 downto 0);  -- int8
+          ck_dec                          :   out    std_logic;
           CIC_Decimation1_out             :   out   std_logic_vector(29 downto 0)  -- sfix30
           );
   end component;
@@ -67,6 +68,7 @@ architecture rtl of cic_top_v0 is
 
   -- Signals
   signal enb_1_1_1                        : std_logic;
+  signal ck_dec                        : std_logic;
   signal CIC_Decimation1_out1             : std_logic_vector(29 downto 0);  -- ufix30
 
 begin
@@ -74,14 +76,13 @@ begin
     port map( clk => clk,
               enb_1_1_1 => enb_1_1_1,
               reset => reset,
+              ck_dec => ck_dec,
               CIC_Decimation1_in => input,  -- int8
               CIC_Decimation1_out => CIC_Decimation1_out1  -- sfix30
               );
 
   enb_1_1_1 <= clk_enable;
-
-  ce_out <= enb_1_1_1;
-
+  clk_decimated <= ck_dec;
   output <= CIC_Decimation1_out1;
 
 end rtl;
