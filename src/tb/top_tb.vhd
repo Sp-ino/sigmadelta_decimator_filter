@@ -22,10 +22,13 @@ architecture behavioral of tb is
     );
     end component;
 
-    constant one: std_logic_vector (7 downto 0) := "01111111";
-    constant zero: std_logic_vector (7 downto 0) := "10000001";
     constant tck: time := 10ns;
     constant osr: integer := 160;
+
+    -- Useful when the input is an 8-bit number
+    constant one: std_logic_vector (7 downto 0) := "01111111";
+    constant zero: std_logic_vector (7 downto 0) := "10000001";
+
     signal ck: std_logic := '0';
     signal rst: std_logic := '0';
     signal ck_en: std_logic := '0';
