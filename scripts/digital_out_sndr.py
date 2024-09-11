@@ -78,7 +78,7 @@ theor_out_fft_lin = 2.0/N_SAMPLES_MOD2 * np.abs(transform[:N_SAMPLES_MOD2])
 
 fft_db = 20*np.log10(theor_out_fft_lin)
 fig_outt, ax_outt = plt.subplots()
-ax_outt.stem(fft_db)
+ax_outt.plot(fft_db[0:N_SAMPLES_MOD2//2])
 ax_outt.set_title("Theoretical CIC output spectrum")
 plt.show()
 
@@ -101,9 +101,9 @@ totransform = output_waveform#[OFFSET:N_SAMPLES+OFFSET]            #compute DFT
 transform = fft(totransform)
 out_fft_lin = 2.0/N_SAMPLES * np.abs(transform[:N_SAMPLES])
 
-fft_db = 20*np.log10(out_fft_lin)
+fft_db = 20*np.log10(out_fft_lin[0:N_SAMPLES//2])
 fig_out, ax_out = plt.subplots()
-ax_out.stem(fft_db)
+ax_out.plot(fft_db)
 ax_out.set_title("CIC transfer function from VHDL TB")
 plt.show()
 
@@ -122,7 +122,7 @@ out_fft_lin = 2.0/N_SAMPLES * np.abs(transform[:N_SAMPLES])
 
 fft_db = 20*np.log10(out_fft_lin)
 fig_out, ax_out = plt.subplots()
-ax_out.stem(fft_db)
+ax_out.stem(fft_db[0:N_SAMPLES//2])
 ax_out.set_title("Actual CIC output spectrum")
 plt.show()
 

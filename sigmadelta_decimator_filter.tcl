@@ -32,6 +32,8 @@ proc checkRequiredFiles { origin_dir} {
  "[file normalize "$origin_dir/src/wave_config/tb.wcfg"]"\
  "[file normalize "$origin_dir/src/tb/top_tb_csv.vhd"]"\
  "[file normalize "$origin_dir/src/wave_config/tb_csv.wcfg"]"\
+ "[file normalize "$origin_dir/src/tb/top_tb_impulseresp.vhd"]"\
+ "[file normalize "$origin_dir/src/wave_config/tb_impulse.wcfg"]"\
   ]
   foreach ifile $files {
     if { ![file isfile $ifile] } {
@@ -155,7 +157,8 @@ set_property -name "simulator.xcelium_version" -value "21.09.002" -objects $obj
 set_property -name "simulator.xsim_gcc_version" -value "6.2.0" -objects $obj
 set_property -name "simulator.xsim_version" -value "2022.1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
-set_property -name "webtalk.xsim_launch_sim" -value "90" -objects $obj
+set_property -name "source_mgmt_mode" -value "DisplayOnly" -objects $obj
+set_property -name "webtalk.xsim_launch_sim" -value "143" -objects $obj
 
 # Create 'sources_1' fileset (if not found)
 if {[string equal [get_filesets -quiet sources_1] ""]} {
@@ -278,6 +281,7 @@ set_property -name "file_type" -value "VHDL" -objects $file_obj
 # Set 'sim_1' fileset properties
 set obj [get_filesets sim_1]
 set_property -name "top" -value "tb" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
 set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
 
 # Create 'sim_csv' fileset (if not found)
@@ -305,6 +309,35 @@ set_property -name "file_type" -value "VHDL" -objects $file_obj
 
 # Set 'sim_csv' fileset properties
 set obj [get_filesets sim_csv]
+set_property -name "top" -value "tb" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
+set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
+
+# Create 'impulse_resp' fileset (if not found)
+if {[string equal [get_filesets -quiet impulse_resp] ""]} {
+  create_fileset -simset impulse_resp
+}
+
+# Set 'impulse_resp' fileset object
+set obj [get_filesets impulse_resp]
+set files [list \
+ [file normalize "${origin_dir}/src/tb/top_tb_impulseresp.vhd"] \
+ [file normalize "${origin_dir}/src/wave_config/tb_impulse.wcfg"] \
+]
+add_files -norecurse -fileset $obj $files
+
+# Set 'impulse_resp' fileset file properties for remote files
+set file "$origin_dir/src/tb/top_tb_impulseresp.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets impulse_resp] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+
+
+# Set 'impulse_resp' fileset file properties for local files
+# None
+
+# Set 'impulse_resp' fileset properties
+set obj [get_filesets impulse_resp]
 set_property -name "top" -value "tb" -objects $obj
 set_property -name "top_auto_set" -value "0" -objects $obj
 set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
