@@ -20,6 +20,7 @@ def comb(inData, D):
         delay.pop()
     return outData
 
+
 def integrator(inData):
     delay = 0
     outData = []
@@ -28,6 +29,7 @@ def integrator(inData):
         outData.append(y)
         delay = y
     return outData
+
 
 def cic_filter_time(input):
     return comb(

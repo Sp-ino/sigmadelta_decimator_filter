@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 np.seterr(divide='ignore', invalid='ignore')
 
-OSR = 64
+OSR = 160
 FFT_RESOLUTION = 1024
 LEN = OSR*FFT_RESOLUTION
 
@@ -57,12 +57,22 @@ def mov_avg_2(in_data: np.ndarray):
 def mov_avg_5(in_data: np.ndarray):
     out_data = []
     for n, x_n in enumerate(in_data):
-        # if n == 0:
-        #     y_n = x_n
-        if n < 4:
-            y_n = in_data[0:n].sum()
-        else:
-            y_n = in_data[n-5:n].sum()
+        if n == 0:
+            y_n = x_n
+        elif n == 1:
+            y_n = in_data[n] + in_data[n-1]
+        elif n == 2:
+            y_n = in_data[n] + in_data[n-1] + in_data[n-2]
+        elif n == 3:
+            y_n = in_data[n] + in_data[n-1] + in_data[n-2] + in_data[n-3]
+        elif n >= 4:
+            y_n = in_data[n] + in_data[n-1] + in_data[n-2] + in_data[n-3] + in_data[n-4]
+        # elif 0 < n < 5:
+        #     last_5_samples = in_data[0:n]
+        #     y_n = np.sum(last_5_samples)
+        # else:
+        #     last_5_samples = in_data[n-5:n]
+        #     y_n = np.sum(last_5_samples)
         
         out_data.append(y_n)
     
@@ -71,22 +81,17 @@ def mov_avg_5(in_data: np.ndarray):
 
 def stage_2(input: np.ndarray):
     out_nondec = mov_avg_2(mov_avg_2(mov_avg_2(input)))
-    print(len(out_nondec))
-    # return out_nondec
     return out_nondec[0:len(out_nondec):2]
 
 
 def stage_5(input: np.ndarray):
     out_nondec = mov_avg_5(mov_avg_5(mov_avg_5(input)))
-    print(len(out_nondec))
-    # return out_nondec
     return out_nondec[0:len(out_nondec):5]
 
 
 def cic_filter_nonrec_time(input: np.ndarray):
-    out_interm = stage_2(stage_2(stage_2(stage_2(stage_2(stage_2(input))))))
-    return out_interm
-    # return stage_5(out_interm)
+    out_interm = stage_2(stage_2(stage_2(stage_2(stage_2(input)))))
+    return stage_5(out_interm)
 
 
 impulse = np.array([1]+[0]*(LEN))
@@ -97,6 +102,8 @@ impulse_resp = cic_filter_nonrec_time(impulse)
 # Impulse resp of reference implementation
 impulse_resp_ref = cic_filter_time(impulse)
 impulse_resp_ref = impulse_resp_ref[0:LEN:OSR]
+print(len(impulse_resp))
+print(len(impulse_resp_ref))
 
 # Plot result
 plt.figure
