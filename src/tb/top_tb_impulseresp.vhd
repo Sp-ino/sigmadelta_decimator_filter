@@ -23,11 +23,11 @@ architecture behavioral of tb is
 
     constant tck: time := 10 ns;
     constant osr: integer := 160;
-    constant input_len: integer := 256; --2^14
+    constant input_len: integer := 2048; --2^14
 
     -- Useful when the input is an 8-bit number
     constant one: std_logic_vector (7 downto 0) := "01111111";
-    constant zero: std_logic_vector (7 downto 0) := "10000001";
+    constant zero: std_logic_vector (7 downto 0) := "00000000";
 
     signal ck: std_logic := '0';
     signal rst: std_logic := '0';
@@ -74,6 +74,9 @@ begin
 
         wait for 2*tck;
         ck_en <= '1';
+        input <= zero;
+        
+        wait for 20*osr*tck;
 
         for k in 0 to osr*input_len-1 loop
             if k = 0 then
