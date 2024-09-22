@@ -3,52 +3,56 @@ import numpy as np
 import matplotlib.pyplot as plt
 np.seterr(divide='ignore', invalid='ignore');
 
+OSR = 64
 FFT_RESOLUTION = 1024
-OSR = 160
+LEN = OSR*FFT_RESOLUTION
 
-def comb(inData, D):
-    outData = []
+def comb(in_data, D):
+    out_data = []
     delay = [0] * D
-    for sample in inData:
-        outData.append(sample - delay[-1])
+    for sample in in_data:
+        out_data.append(sample - delay[-1])
         delay = [sample] + delay
         delay.pop()
-    return outData
+    return out_data
 
-def integrator(inData):
+def integrator(in_data):
     delay = 0
-    outData = []
-    for sample in inData:
+    out_data = []
+    for sample in in_data:
         y = delay + sample    
-        outData.append(y)
+        out_data.append(y)
         delay = y
-    return outData
+    return out_data
 
-impulse = [1]+[0]*(FFT_RESOLUTION)
-# impulseResponse = integrator(comb(impulse, 160)) # Apply the comb with delay 160, then the integrator.
-impulseResponse2 = comb(
-    comb(
+def cic_filter_time(input):
+    return np.array(comb(
         comb(
-            integrator(
+            comb(
                 integrator(
-                    integrator(impulse)
-                )
-            )
-        ,OSR
-        ),
-    OSR
-    ),
-OSR) # Apply the integrator, then the comb with delay 160.
-# Plot result
+                    integrator(
+                        integrator(input)
+                    )
+                ), OSR          
+            ), OSR  
+        ), OSR
+    )) # Apply the integrator, then the comb with delay 160.
 
+
+impulse = np.array([1]+[0]*(LEN))
+# impulseResponse = integrator(comb(impulse, 160)) # Apply the comb with delay 160, then the integrator.
+impulse_resp_dec =  cic_filter_time(impulse)# Apply the integrator, then the comb with delay 160.
+impulse_resp_dec = impulse_resp_dec[0:LEN:OSR]
+print(impulse_resp_dec.shape)
+
+# Plot result
 plt.figure
-plt.plot(impulseResponse2)
+plt.plot(impulse_resp_dec)
 
 # Only plot the positive frequencies (-ive freqs are just an image of +ive)
 xaxis = np.arange(FFT_RESOLUTION/2) * 0.5/(FFT_RESOLUTION/2)
 plt.figure(figsize=(12,4))
-# plt.plot(xaxis,(20*np.log10(np.abs(np.fft.fft(impulseResponse))))[0:int(FFT_RESOLUTION/2)], label="Comb then Integrator")
-plt.plot(xaxis,(20*np.log10(np.abs(np.fft.fft(impulseResponse2))))[0:int(FFT_RESOLUTION/2)],'--', label="Integrator then Comb")
+plt.plot(xaxis,(20*np.log10(np.abs(np.fft.fft(impulse_resp_dec))))[0:int(FFT_RESOLUTION/2)],'--')
 axes = plt.gca() 
 # axes.set_xlim([0,0.5])
 # axes.set_ylim([-25,20])
