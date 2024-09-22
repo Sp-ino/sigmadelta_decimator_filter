@@ -76,19 +76,20 @@ if INPUT_SPECTRUM:
 ideal_output_wf = np.array(cic_filter_time(input_waveform))
 
 theor_out_fft_db = None
+totransform_py = None
 
 if PYTHON_CIC_NONDEC:
     # Plot time domain wf and spectrum of theoretical CIC output without downsampling
-    totransform = ideal_output_wf[OFFSET*OSR:N_SAMPLES_MOD2+OFFSET*OSR]            #compute DFT
+    totransform_py_nodwn = ideal_output_wf[OFFSET*OSR:N_SAMPLES_MOD2+OFFSET*OSR]            #compute DFT
     fig_ideal_out, ax_ideal_out = plt.subplots()
     plt.xscale("linear")
-    ax_ideal_out.plot(totransform)
+    ax_ideal_out.plot(totransform_py_nodwn)
     ax_ideal_out.set_title("CIC output without downsampling (Python)")
     ax_ideal_out.set_xlabel("Sample")
     ax_ideal_out.set_ylabel("Amplitude")
     plt.show()
 
-    transform = fft(totransform)
+    transform = fft(totransform_py_nodwn)
     theor_out_fft_lin_nondec = 2.0/N_SAMPLES_MOD2 * np.abs(transform[:N_SAMPLES_MOD2//2])
     theor_out_fft_db_nondec = 20*np.log10(theor_out_fft_lin_nondec)
 
@@ -102,16 +103,16 @@ if PYTHON_CIC_NONDEC:
 
 if PYTHON_CIC_DEC:
     # Plot time domain wf and spectrum of theoretical CIC output with downsampling
-    totransform = ideal_output_wf[OFFSET*OSR:N_SAMPLES_MOD2+OFFSET*OSR:OSR]            #compute DFT
+    totransform_py = ideal_output_wf[OFFSET*OSR:N_SAMPLES_MOD2+OFFSET*OSR:OSR]            #compute DFT
     fig_ideal_out, ax_ideal_out = plt.subplots()
     plt.xscale("linear")
-    ax_ideal_out.plot(totransform)
+    ax_ideal_out.plot(totransform_py)
     ax_ideal_out.set_title("CIC output (Python)")
     ax_ideal_out.set_xlabel("Sample")
     ax_ideal_out.set_ylabel("Amplitude")
     plt.show()
 
-    transform = fft(totransform)
+    transform = fft(totransform_py)
     theor_out_fft_lin = 2.0/N_SAMPLES_MOD2 * np.abs(transform[:N_SAMPLES//2])
     theor_out_fft_db = 20*np.log10(theor_out_fft_lin)
     # normalize carrier to 0 dB
@@ -139,9 +140,9 @@ if VHDL_CIC_IMPULSE_RESP:
     output_waveform = np.genfromtxt(folder+out_csv_file)
 
     # Evaluate output spectrum of CIC filter
-    totransform = output_waveform#[OFFSET:N_SAMPLES+OFFSET]            #compute DFT
-    # plt.plot(totransform, "-o")
-    transform = fft(totransform)
+    totransform_impresp = output_waveform#[OFFSET:N_SAMPLES+OFFSET]            #compute DFT
+    # plt.plot(totransform_impresp, "-o")
+    transform = fft(totransform_impresp)
     out_fft_lin = 2.0/N_SAMPLES * np.abs(transform[:N_SAMPLES//2])
     out_fft_db = 20*np.log10(out_fft_lin)
 
@@ -161,10 +162,22 @@ if VHDL_CIC_SPECTRUM:
 
     output_waveform = np.genfromtxt(folder+out_csv_file)
 
+    # Plot time domain wf of CIC output
+    # totransform_vhdl = ideal_output_wf[OFFSET*OSR:N_SAMPLES_MOD2+OFFSET*OSR:OSR]            #compute DFT
+    totransform_vhdl = output_waveform[OFFSET:N_SAMPLES+OFFSET]            #compute DFT
+    fig_out_time, ax_out_time = plt.subplots()
+    plt.xscale("linear")
+    if totransform_py is not None:
+        ax_out_time.plot(totransform_py, label="VHDL (fixed point)")
+    ax_out_time.plot(totransform_vhdl, label="Python (floating point)")
+    ax_out_time.set_title("CIC output (Python)")
+    ax_out_time.set_xlabel("Sample")
+    ax_out_time.set_ylabel("Amplitude")
+    ax_out_time.legend()
+    plt.show()
+
     # Evaluate output spectrum of CIC filter
-    totransform = output_waveform[OFFSET:N_SAMPLES+OFFSET]            #compute DFT
-    # plt.plot(totransform, "-o")
-    transform = fft(totransform)
+    transform = fft(totransform_vhdl)
     out_fft_lin = 2.0/N_SAMPLES * np.abs(transform[:N_SAMPLES//2])
     out_fft_db = 20*np.log10(out_fft_lin)
     out_fft_db = out_fft_db - np.max(out_fft_db)
@@ -173,7 +186,7 @@ if VHDL_CIC_SPECTRUM:
     freq = np.linspace(0, 0.5, len(out_fft_db))
     if theor_out_fft_db is not None:
         ax_out.stem(freq, theor_out_fft_db, label="Python (floating point)", bottom=-140, linefmt='C1-')
-    ax_out.stem(freq, out_fft_db, label="VHDL", bottom=-140, linefmt='C0-')
+    ax_out.stem(freq, out_fft_db, label="VHDL (fixed point)", bottom=-140, linefmt='C0-')
     ax_out.set_title("CIC output spectrum (VHDL vs. Python)")
     ax_out.set_xlabel("Normalized frequency")
     ax_out.set_ylabel("Amplitude [dB20]")
