@@ -47,7 +47,8 @@ architecture behavioral of tb is
 
     -- Open file
     -- file input_file : text open read_mode is "/home/valerio/phd/lavori/sigmadelta_decimator_filter/src/tb/mod2_out.txt";
-    file input_file : text open read_mode is "../../../../../src/tb/mod2_out_long.txt";
+    -- file input_file : text open read_mode is "../../../../../src/tb/mod2_out_long.txt";
+    file input_file : text open read_mode is "../../../../../src/tb/out_sampled_mod2_v11_noise.txt";
     file output_file : text open write_mode is "../../../../../src/tb/cicv3_filter_out.txt";
 
     signal input_valid : boolean := false;
