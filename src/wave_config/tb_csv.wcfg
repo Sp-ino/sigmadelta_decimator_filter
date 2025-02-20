@@ -11,73 +11,78 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="178.798154 us"></ZoomEndTime>
-      <Cursor1Time time="110.455000 us"></Cursor1Time>
+      <ZoomEndTime time="44.351544 us"></ZoomEndTime>
+      <Cursor1Time time="40.050000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="222"></NameColumnWidth>
-      <ValueColumnWidth column_width="83"></ValueColumnWidth>
+      <NameColumnWidth column_width="502"></NameColumnWidth>
+      <ValueColumnWidth column_width="236"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="14" />
-   <wvobject type="logic" fp_name="/tb/ck">
+   <wvobject fp_name="/tb/ck" type="logic">
       <obj_property name="ElementShortName">ck</obj_property>
       <obj_property name="ObjectShortName">ck</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb/rst">
+   <wvobject fp_name="/tb/rst" type="logic">
       <obj_property name="ElementShortName">rst</obj_property>
       <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb/ck_en">
+   <wvobject fp_name="/tb/ck_en" type="logic">
       <obj_property name="ElementShortName">ck_en</obj_property>
       <obj_property name="ObjectShortName">ck_en</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb/clk_decimated">
+   <wvobject fp_name="/tb/clk_decimated" type="logic">
       <obj_property name="ElementShortName">clk_decimated</obj_property>
       <obj_property name="ObjectShortName">clk_decimated</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb/input">
+   <wvobject fp_name="/tb/input" type="array">
       <obj_property name="ElementShortName">input[7:0]</obj_property>
       <obj_property name="ObjectShortName">input[7:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb/input_2bit">
+   <wvobject fp_name="/tb/input_2bit" type="array">
       <obj_property name="ElementShortName">input_2bit[1:0]</obj_property>
       <obj_property name="ObjectShortName">input_2bit[1:0]</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/tb/input_valid">
+   <wvobject fp_name="/tb/input_valid" type="other">
       <obj_property name="ElementShortName">input_valid</obj_property>
       <obj_property name="ObjectShortName">input_valid</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/tb/tck">
+   <wvobject fp_name="/tb/tck" type="other">
       <obj_property name="ElementShortName">tck</obj_property>
       <obj_property name="ObjectShortName">tck</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/tb/osr">
+   <wvobject fp_name="/tb/osr" type="other">
       <obj_property name="ElementShortName">osr</obj_property>
       <obj_property name="ObjectShortName">osr</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb/output_ref">
+   <wvobject fp_name="/tb/output_ref" type="array">
       <obj_property name="ElementShortName">output_ref[29:0]</obj_property>
       <obj_property name="ObjectShortName">output_ref[29:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb/output_dut">
+   <wvobject fp_name="/tb/output_dut" type="array">
       <obj_property name="ElementShortName">output_dut[22:0]</obj_property>
       <obj_property name="ObjectShortName">output_dut[22:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">11</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+      <obj_property name="AnalogYRangeMin">-603883</obj_property>
+      <obj_property name="AnalogYRRangeMax">597936</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb/ref/core_v0/ck_dec">
+   <wvobject fp_name="/tb/ref/core_v0/ck_dec" type="logic">
       <obj_property name="ElementShortName">ck_dec</obj_property>
       <obj_property name="ObjectShortName">ck_dec</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb/ref/core_v0/phase_0">
+   <wvobject fp_name="/tb/ref/core_v0/phase_0" type="logic">
       <obj_property name="ElementShortName">phase_0</obj_property>
       <obj_property name="ObjectShortName">phase_0</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb/ref/clk_decimated">
+   <wvobject fp_name="/tb/ref/clk_decimated" type="logic">
       <obj_property name="ElementShortName">clk_decimated</obj_property>
       <obj_property name="ObjectShortName">clk_decimated</obj_property>
    </wvobject>
