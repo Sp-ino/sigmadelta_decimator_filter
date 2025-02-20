@@ -2,4 +2,5 @@ vivado_project/*
 *.jou
 *.log
 *.str
+*.bak
 *.Xil/

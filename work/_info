@@ -1,0 +1,97 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/home/spino
+Ecic_top_v3
+Z0 w1725971934
+Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 3
+Z4 d/home/spino/phd/lavori/sigmadelta_decimator_filter
+Z5 8/home/spino/phd/lavori/sigmadelta_decimator_filter/src/cic_top_v3.vhd
+Z6 F/home/spino/phd/lavori/sigmadelta_decimator_filter/src/cic_top_v3.vhd
+l0
+L8 1
+VX7gZzHl6UIlB4k>2mK@<m3
+!s100 gT0C__4V8PC?Ukf_abmm?0
+Z7 OV;C;2020.1;71
+32
+Z8 !s110 1726700328
+!i10b 1
+Z9 !s108 1726700328.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/spino/phd/lavori/sigmadelta_decimator_filter/src/cic_top_v3.vhd|
+Z11 !s107 /home/spino/phd/lavori/sigmadelta_decimator_filter/src/cic_top_v3.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Astructural
+R1
+R2
+R3
+DEx4 work 10 cic_top_v3 0 22 X7gZzHl6UIlB4k>2mK@<m3
+!i122 3
+l65
+L21 142
+VB;YdJ5m`:XQKXfV7:m35j2
+!s100 8ESUBQI`05VjP?k_E>c8b0
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Etb
+Z14 w1726700293
+R1
+R2
+R3
+!i122 5
+R4
+Z15 8/home/spino/phd/lavori/sigmadelta_decimator_filter/src/tb/top_tb_csv.vhd
+Z16 F/home/spino/phd/lavori/sigmadelta_decimator_filter/src/tb/top_tb_csv.vhd
+l0
+L9 1
+V2URb5hEmng]j3?<iVGY>42
+!s100 9M7Jf<nO^9XSUTNN>5dh91
+R7
+32
+R8
+!i10b 1
+R9
+Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/spino/phd/lavori/sigmadelta_decimator_filter/src/tb/top_tb_csv.vhd|
+!s107 /home/spino/phd/lavori/sigmadelta_decimator_filter/src/tb/top_tb_csv.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R1
+R2
+R3
+DEx4 work 2 tb 0 22 2URb5hEmng]j3?<iVGY>42
+!i122 5
+l56
+L12 119
+VkeNV:YfhkLRoo[dnd]2FE0
+!s100 ob[hC6JieIDO0hzhhhUMJ2
+R7
+32
+R8
+!i10b 1
+R9
+R17
+Z18 !s107 /home/spino/phd/lavori/sigmadelta_decimator_filter/src/tb/top_tb_csv.vhd|
+!i113 1
+R12
+R13

@@ -1,0 +1,13 @@
+# Compile of cic_top_v3.vhd was successful.
+# Compile of top_tb.vhd failed with 1 errors.
+# Compile of top_tb_csv.vhd failed with 1 errors.
+# 3 compiles, 2 failed with 2 errors.
+# Compile of cic_top_v3.vhd was successful.
+# Compile of top_tb.vhd failed with 1 errors.
+# Compile of top_tb_csv.vhd was successful.
+# 3 compiles, 1 failed with 1 error.
+# Compile of cic_top_v3.vhd was successful.
+# Compile of top_tb.vhd was successful with warnings.
+# Compile of top_tb_csv.vhd was successful.
+# 3 compiles, 0 failed with no errors.
+# Load canceled

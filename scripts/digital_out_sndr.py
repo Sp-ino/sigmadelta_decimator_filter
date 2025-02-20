@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.fftpack import fft
 
-OFFSET = 32 #matlab implementation
+OFFSET = 8 #matlab implementation
 # OFFSET = 3 #custom implementation
 N_SAMPLES = 64
 OSR = 160
@@ -10,7 +10,7 @@ N_SAMPLES_MOD2 = N_SAMPLES*OSR
 FUNDAM_INDEX = 9
 
 
-INPUT_SPECTRUM = False
+INPUT_SPECTRUM = True
 PYTHON_CIC_NONDEC = False
 PYTHON_CIC_DEC = True
 VHDL_CIC_IMPULSE_RESP = False
@@ -54,7 +54,8 @@ def cic_filter_time(input):
 
 # ---------------- Evaluate properties of CIC input -----------------------
 folder = "../src/tb/"
-in_csv_file = "mod2_out_long.txt"
+# in_csv_file = "mod2_out_long.txt"
+in_csv_file = "mod2_out_9_32_real_noise.txt"
 input_waveform = np.genfromtxt(folder+in_csv_file)
 
 if INPUT_SPECTRUM:
@@ -69,7 +70,7 @@ if INPUT_SPECTRUM:
     plt.xscale("log")
     freq = np.linspace(0, 0.5, len(in_fft_lin))
     ax_in.plot(freq, fft_db)
-    ax_in.set_title("CIC input spectrum")
+    ax_in.set_title("MOD2 output spectrum")
     ax_in.set_xlabel("Normalized frequency")
     ax_in.set_ylabel("Amplitude [dB20]")
     plt.show()
